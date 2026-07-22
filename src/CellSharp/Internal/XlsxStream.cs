@@ -25,17 +25,8 @@ internal static class XlsxStream
     internal static SpreadsheetDocument Open(string path, ExcelReadOptions? options = null)
     {
         var readOptions = options ?? ExcelReadOptions.Default;
-        var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-        try
-        {
-            ValidatePackageLength(stream.Length, readOptions.MaxPackageBytes);
-            return SpreadsheetDocument.Open(stream, false, OpenSettings(readOptions));
-        }
-        catch
-        {
-            stream.Dispose();
-            throw;
-        }
+        ValidatePackageLength(new FileInfo(path).Length, readOptions.MaxPackageBytes);
+        return SpreadsheetDocument.Open(path, false, OpenSettings(readOptions));
     }
 
     internal static void CompleteWrite(Stream stream) => stream.Position = stream.Length;
