@@ -45,6 +45,26 @@ public sealed class ExcelReadTests
     }
 
     [Fact]
+    public void ReadReleasesTheSourceFile()
+    {
+        var path = TemporaryPath();
+
+        try
+        {
+            Excel.Write(path, [new SimpleCustomer { Id = 1, Name = "Ada", Active = true }]);
+
+            var result = Excel.Read<SimpleCustomer>(path);
+
+            Assert.True(result.IsValid);
+            using var exclusiveAccess = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+        }
+        finally
+        {
+            Delete(path);
+        }
+    }
+
+    [Fact]
     public void ReadMapsColumnsInAnyOrder()
     {
         var path = TemporaryPath();
