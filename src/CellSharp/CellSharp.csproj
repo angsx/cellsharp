@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <AssemblyName>CellSharp</AssemblyName>
+    <RootNamespace>CellSharp</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CA1510;CA1720;CA1068;CA1865;CA1846;CA1822</NoWarn>
+    <PackageId>CellSharp</PackageId>
+    <Title>CellSharp</Title>
+    <Product>CellSharp</Product>
+    <Version>0.6.0-prerelease</Version>
+    <Authors>Angelo Collura</Authors>
+    <Copyright>Copyright © 2026 Angelo Collura</Copyright>
+    <Description>A lightweight, strongly typed .NET library for reading and writing Excel XLSX files with schemas, validation, formulas, templates, and multi-sheet workbooks.</Description>
+    <PackageTags>excel;xlsx;spreadsheet;openxml;dotnet;csharp;excel-library;excel-reader;excel-writer;import;export;strongly-typed</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/angsx/cellsharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/angsx/cellsharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

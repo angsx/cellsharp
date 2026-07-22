@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellSharp", "src\CellSharp\CellSharp.csproj", "{5E916152-7B59-4435-8FBB-CA319D3E38BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellSharp.Tests", "tests\CellSharp.Tests\CellSharp.Tests.csproj", "{1305558C-5436-4A0E-8B33-E91F41EC4C43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellSharp.Samples", "samples\CellSharp.Samples\CellSharp.Samples.csproj", "{E5D79929-35D4-4E88-9F6C-62D707D59313}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E916152-7B59-4435-8FBB-CA319D3E38BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E916152-7B59-4435-8FBB-CA319D3E38BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E916152-7B59-4435-8FBB-CA319D3E38BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E916152-7B59-4435-8FBB-CA319D3E38BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1305558C-5436-4A0E-8B33-E91F41EC4C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1305558C-5436-4A0E-8B33-E91F41EC4C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1305558C-5436-4A0E-8B33-E91F41EC4C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1305558C-5436-4A0E-8B33-E91F41EC4C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D79929-35D4-4E88-9F6C-62D707D59313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D79929-35D4-4E88-9F6C-62D707D59313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D79929-35D4-4E88-9F6C-62D707D59313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D79929-35D4-4E88-9F6C-62D707D59313}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
