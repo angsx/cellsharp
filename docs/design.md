@@ -68,9 +68,9 @@ Formula-looking strings are always emitted as inline text cells, not formula cel
 
 ## Styling
 
-Schema describes data structure; write options describe workbook presentation. A schema column may carry small export hints (`Format`, `Width`, and `Align`) because they are attached to a stable known field; they are ignored by the import pipeline and never change values. `ExcelTheme` is a shortcut that resolves internally into an `ExcelStyleTemplate`. A custom immutable `ExcelStyleTemplate` replaces the theme as the base visual identity and has no Open XML or workbook state, so one static instance can be safely reused across exports.
+Schema describes data structure; write options describe workbook presentation. A schema column may carry small export hints (`Format`, `Width`, `Align`, `VerticalAlign`, `HeaderAlign`, and `HeaderVerticalAlign`) because they are attached to a stable known field; they are ignored by the import pipeline and never change values. `ExcelTheme` is a shortcut that resolves internally into an `ExcelStyleTemplate`. A custom immutable `ExcelStyleTemplate` replaces the theme as the base visual identity and has no Open XML or workbook state, so one static instance can be safely reused across exports.
 
-Precedence is column format/alignment, then explicit `HeaderStyle` values, then the custom template or resolved built-in theme, then fallback defaults. Explicit column width wins over write-level autofit estimation. Alternating rows obtain their color from the active base template instead of from writer logic.
+Header alignment precedence is an explicit `HeaderAlign` or `HeaderVerticalAlign` value, then the corresponding column alignment, then the centered fallback. Other style precedence is explicit `HeaderStyle` values, then the custom template or resolved built-in theme, then fallback defaults. Explicit column width wins over write-level autofit estimation. Alternating rows obtain their color from the active base template instead of from writer logic.
 
 The Open XML catalog deduplicates fonts, fills, borders, cell formats, and equivalent custom number formats. This keeps large exports compact while preserving a backend-independent public model.
 

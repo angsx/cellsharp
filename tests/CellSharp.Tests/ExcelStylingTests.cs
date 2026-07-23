@@ -80,6 +80,74 @@ public sealed class ExcelStylingTests
     }
 
     [Fact]
+    public void SchemaColumnAlignmentFlowsToHeadersUnlessTheHeaderOverridesIt()
+    {
+        var path = TemporaryPath();
+        var schema = Excel.Schema<StyledCustomer>()
+            .Column(customer => customer.Name, column => column
+                .Align(ExcelHorizontalAlignment.Left)
+                .VerticalAlign(ExcelVerticalAlignment.Top))
+            .Column(customer => customer.Id, column => column
+                .Align(ExcelHorizontalAlignment.Right)
+                .VerticalAlign(ExcelVerticalAlignment.Bottom)
+                .HeaderAlign(ExcelHorizontalAlignment.Center)
+                .HeaderVerticalAlign(ExcelVerticalAlignment.Justify))
+            .Build();
+
+        try
+        {
+            Excel.Write(path, Customers(), schema);
+
+            using var document = SpreadsheetDocument.Open(path, false);
+            var rows = document.WorkbookPart!.WorksheetParts.Single().Worksheet!
+                .GetFirstChild<SheetData>()!
+                .Elements<Row>()
+                .ToArray();
+            var headers = rows[0].Elements<Cell>().ToArray();
+            var values = rows[1].Elements<Cell>().ToArray();
+
+            Assert.Equal(HorizontalAlignmentValues.Left, Format(document, headers[0]).Alignment!.Horizontal!.Value);
+            Assert.Equal(VerticalAlignmentValues.Top, Format(document, headers[0]).Alignment!.Vertical!.Value);
+            Assert.Equal(HorizontalAlignmentValues.Center, Format(document, headers[1]).Alignment!.Horizontal!.Value);
+            Assert.Equal(VerticalAlignmentValues.Justify, Format(document, headers[1]).Alignment!.Vertical!.Value);
+            Assert.Equal(HorizontalAlignmentValues.Left, Format(document, values[0]).Alignment!.Horizontal!.Value);
+            Assert.Equal(VerticalAlignmentValues.Top, Format(document, values[0]).Alignment!.Vertical!.Value);
+            Assert.Equal(HorizontalAlignmentValues.Right, Format(document, values[1]).Alignment!.Horizontal!.Value);
+            Assert.Equal(VerticalAlignmentValues.Bottom, Format(document, values[1]).Alignment!.Vertical!.Value);
+        }
+        finally
+        {
+            Delete(path);
+        }
+    }
+
+    [Fact]
+    public void TemplateHeadersUseTheConfiguredColumnAlignment()
+    {
+        var path = TemporaryPath();
+        var schema = Excel.Schema<StyledCustomer>()
+            .Column(customer => customer.Name, column => column
+                .HeaderAlign(ExcelHorizontalAlignment.Right)
+                .HeaderVerticalAlign(ExcelVerticalAlignment.Bottom))
+            .Build();
+
+        try
+        {
+            Excel.CreateTemplate(path, schema);
+
+            using var document = SpreadsheetDocument.Open(path, false);
+            var header = Cells(document).Single();
+
+            Assert.Equal(HorizontalAlignmentValues.Right, Format(document, header).Alignment!.Horizontal!.Value);
+            Assert.Equal(VerticalAlignmentValues.Bottom, Format(document, header).Alignment!.Vertical!.Value);
+        }
+        finally
+        {
+            Delete(path);
+        }
+    }
+
+    [Fact]
     public void WriteRejectsInvalidHeaderColorsBeforeCreatingAWorkbook()
     {
         var path = TemporaryPath();

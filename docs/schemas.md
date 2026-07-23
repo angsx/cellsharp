@@ -108,11 +108,12 @@ var schema = Excel.Schema<Order>()
         .Width(14))
     .Column(x => x.Total, column => column
         .Format("#,##0.00")
-        .Align(ExcelHorizontalAlignment.Right))
+        .Align(ExcelHorizontalAlignment.Right)
+        .HeaderAlign(ExcelHorizontalAlignment.Center))
     .Build();
 ```
 
-`Format` accepts an Excel format-code string and writes it to the XLSX style table; CellSharp does not parse it. Format codes are invariant: `#,##0.00` displays `1` as `1,00` in Italian Excel, so decimal placeholders must use `.` rather than `,`. `Width` must be greater than zero and no greater than 255. `Align` accepts the deliberately small `General`, `Left`, `Center`, and `Right` enum. These settings are consumed by `Write` and `CreateTemplate`; the same schema stays reusable for `Read`. See [styling](styling.md) and [generated templates](templates.md) for precedence and workbook-level options.
+`Format` accepts an Excel format-code string and writes it to the XLSX style table; CellSharp does not parse it. Format codes are invariant: `#,##0.00` displays `1` as `1,00` in Italian Excel, so decimal placeholders must use `.` rather than `,`. `Width` must be greater than zero and no greater than 255. `Align` and `VerticalAlign` set data-cell alignment and are inherited by the header. `HeaderAlign` and `HeaderVerticalAlign` override only that header. These settings are consumed by `Write` and `CreateTemplate`; the same schema stays reusable for `Read`. See [styling](styling.md) and [generated templates](templates.md) for precedence and workbook-level options.
 
 `Formula(...)` is a separate write-time setting: it produces a native formula cell for each data row. The property's converted value is stored as that cell's initial cached result, while the formula remains authoritative when a spreadsheet recalculates it. It can be combined with format, width, alignment, converters, and custom `.Validate(...)` predicates, but not native declarative validation. See [formulas](formulas.md).
 

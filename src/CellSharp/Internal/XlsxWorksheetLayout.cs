@@ -34,12 +34,12 @@ internal static class XlsxWorksheetLayout
             }));
     }
 
-    internal static Row HeaderRow(IEnumerable<ExportProperty> properties, uint styleIndex)
+    internal static Row HeaderRow(IEnumerable<ExportProperty> properties, WorkbookStyleCatalog styles, ExcelWriteOptions options)
     {
         var row = new Row();
         foreach (var property in properties)
         {
-            row.AppendChild(CellValueWriter.Create(property.Header, styleIndex));
+            row.AppendChild(CellValueWriter.Create(property.Header, styles.HeaderStyleIndex(property, options)));
         }
 
         return row;

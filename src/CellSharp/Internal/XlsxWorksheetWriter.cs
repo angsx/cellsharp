@@ -51,7 +51,7 @@ internal static class XlsxWorksheetWriter
         var dataStart = layout?.DataStart;
         var startRow = dataStart?.FromRow ?? 1;
         var startColumn = dataStart?.FromColumn ?? 1;
-        sheetData.AppendChild(HeaderRow(properties, styles.HeaderStyleIndex(options), startRow, startColumn));
+        sheetData.AppendChild(HeaderRow(properties, styles, options, startRow, startColumn));
         var dataRowIndex = 0;
         var hasFormulaCells = false;
         foreach (var item in rows)
@@ -124,7 +124,7 @@ internal static class XlsxWorksheetWriter
         var dataStart = layout?.DataStart;
         var startRow = dataStart?.FromRow ?? 1;
         var startColumn = dataStart?.FromColumn ?? 1;
-        sheetData.AppendChild(HeaderRow(properties, styles.HeaderStyleIndex(options), startRow, startColumn));
+        sheetData.AppendChild(HeaderRow(properties, styles, options, startRow, startColumn));
         worksheetPart.Worksheet = worksheet;
 
         XlsxWorksheetLayout.AddSheet(workbookPart, worksheetPart, schema.SheetName);
@@ -144,9 +144,9 @@ internal static class XlsxWorksheetWriter
         return new WorksheetValidationContext(worksheetPart, worksheet, Array.Empty<ExportProperty>(), hasFormulaCells, 0, null, layout.Name, WorksheetSettingsDefinition.From(ExcelWriteOptions.Default), 1, 1, layout);
     }
 
-    private static Row HeaderRow(IEnumerable<ExportProperty> properties, uint styleIndex, int rowNumber, int startColumn)
+    private static Row HeaderRow(IEnumerable<ExportProperty> properties, WorkbookStyleCatalog styles, ExcelWriteOptions options, int rowNumber, int startColumn)
     {
-        var row = XlsxWorksheetLayout.HeaderRow(properties, styleIndex);
+        var row = XlsxWorksheetLayout.HeaderRow(properties, styles, options);
         row.RowIndex = (uint)rowNumber;
         var cells = row.Elements<Cell>().ToArray();
         for (var index = 0; index < cells.Length; index++) cells[index].CellReference = ExcelRangeReference.ColumnName(startColumn + index) + rowNumber;

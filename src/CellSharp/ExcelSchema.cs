@@ -338,6 +338,9 @@ public sealed class ExcelColumnBuilder<T, TValue>
     private string? _format;
     private double? _width;
     private ExcelHorizontalAlignment? _alignment;
+    private ExcelVerticalAlignment? _verticalAlignment;
+    private ExcelHorizontalAlignment? _headerAlignment;
+    private ExcelVerticalAlignment? _headerVerticalAlignment;
     private readonly List<ValidationRule> _validations = new();
     private DeclarativeValidationRule? _declarativeValidation;
     private ValueConverterDefinition? _converter;
@@ -360,6 +363,9 @@ public sealed class ExcelColumnBuilder<T, TValue>
         _format = column.Format;
         _width = column.Width;
         _alignment = column.Alignment;
+        _verticalAlignment = column.VerticalAlignment;
+        _headerAlignment = column.HeaderAlignment;
+        _headerVerticalAlignment = column.HeaderVerticalAlignment;
         _validations.AddRange(column.Validations);
         _declarativeValidation = column.DeclarativeValidation;
         _converter = column.Converter;
@@ -459,6 +465,42 @@ public sealed class ExcelColumnBuilder<T, TValue>
         }
 
         _alignment = alignment;
+        return this;
+    }
+
+    /// <summary>Sets the vertical alignment used for exported data cells in this column.</summary>
+    public ExcelColumnBuilder<T, TValue> VerticalAlign(ExcelVerticalAlignment alignment)
+    {
+        if (!Enum.IsDefined(typeof(ExcelVerticalAlignment), alignment))
+        {
+            throw new ArgumentOutOfRangeException(nameof(alignment));
+        }
+
+        _verticalAlignment = alignment;
+        return this;
+    }
+
+    /// <summary>Overrides the horizontal alignment used for this column's header cell.</summary>
+    public ExcelColumnBuilder<T, TValue> HeaderAlign(ExcelHorizontalAlignment alignment)
+    {
+        if (!Enum.IsDefined(typeof(ExcelHorizontalAlignment), alignment))
+        {
+            throw new ArgumentOutOfRangeException(nameof(alignment));
+        }
+
+        _headerAlignment = alignment;
+        return this;
+    }
+
+    /// <summary>Overrides the vertical alignment used for this column's header cell.</summary>
+    public ExcelColumnBuilder<T, TValue> HeaderVerticalAlign(ExcelVerticalAlignment alignment)
+    {
+        if (!Enum.IsDefined(typeof(ExcelVerticalAlignment), alignment))
+        {
+            throw new ArgumentOutOfRangeException(nameof(alignment));
+        }
+
+        _headerVerticalAlignment = alignment;
         return this;
     }
 
@@ -634,6 +676,9 @@ public sealed class ExcelColumnBuilder<T, TValue>
             _format,
             _width,
             _alignment,
+            _verticalAlignment,
+            _headerAlignment,
+            _headerVerticalAlignment,
             _sourceColumnNumber,
             _sourceHeader,
             _formula);
