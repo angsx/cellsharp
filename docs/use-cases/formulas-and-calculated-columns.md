@@ -34,7 +34,7 @@ Excel.Write("order-report.xlsx", lines, schema);
 
 ## Result
 
-`Total` is a native Excel formula cell. CellSharp writes the property value as its initial cached result and requests recalculation when formula cells are exported.
+`Total` is a native Excel formula cell. CellSharp writes the property value as its initial cached result and requests recalculation when formula cells are exported. `#,##0.00` is invariant XLSX syntax, so Excel renders whole totals as `1,00` in an Italian locale.
 
 ## Why this approach
 

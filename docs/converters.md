@@ -38,7 +38,7 @@ Blank cells bypass the converter. A nullable property receives `null`; non-nulla
 
 ## Format and validation
 
-Converters and `Format(...)` are separate. For example, a `Money` converter may return `decimal`, after which `Format("#,##0.00")` controls only Excel presentation.
+Converters and `Format(...)` are separate. For example, a `Money` converter may return `decimal`, after which `Format("#,##0.00")` controls only Excel presentation. Format codes are invariant XLSX syntax: the same code displays `1` as `1,00` in Italian Excel.
 
 The runtime order is:
 
