@@ -48,6 +48,8 @@ var title = ExcelStyle.Create(s => s.Bold().FontSize(18).AlignCenter());
 sheet.Range("A1:D1").Style(title);
 ```
 
+`NumberFormat(...)` uses the same invariant XLSX codes as schema `Format(...)`: use `.` for decimal placeholders. For example, `€ #,##0.00` displays a whole value as `€ 1,00` in Italian Excel.
+
 ## Style composition and precedence
 
 Styles are sparse: a builder only overrides the properties it configures. The resolved order is workbook/theme, schema property, column, row, range, then cell. The last level that sets a property wins; properties it does not set continue to inherit. Explicit `false` is an override, so `Bold(false)` and `WrapText(false)` reliably clear an earlier setting. Borders compose independently on each side.

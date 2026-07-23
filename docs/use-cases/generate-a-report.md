@@ -37,7 +37,7 @@ Excel.Write("sales-report.xlsx", report, schema, options => options.AlternatingR
 
 ## Result
 
-The workbook has an Excel Table with filters, readable number/date formats, frozen headers, sized columns, alternating rows, and basic print settings.
+The workbook has an Excel Table with filters, readable number/date formats, frozen headers, sized columns, alternating rows, and basic print settings. The `#,##0.00` revenue format is locale-invariant XLSX syntax and appears as `1,00` for a value of `1` in Italian Excel.
 
 ## Why this approach
 
