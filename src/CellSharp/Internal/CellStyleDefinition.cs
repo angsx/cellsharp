@@ -9,7 +9,8 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
         string foreground,
         string background,
         string border,
-        ExcelHorizontalAlignment alignment)
+        ExcelHorizontalAlignment alignment,
+        ExcelVerticalAlignment verticalAlignment)
     {
         FontName = fontName;
         FontSize = fontSize;
@@ -18,6 +19,7 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
         Background = background;
         Border = border;
         Alignment = alignment;
+        VerticalAlignment = verticalAlignment;
     }
 
     internal string FontName { get; }
@@ -34,6 +36,8 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
 
     internal ExcelHorizontalAlignment Alignment { get; }
 
+    internal ExcelVerticalAlignment VerticalAlignment { get; }
+
     internal CellStyleDefinition With(HeaderStyleOverride? overrideStyle)
     {
         if (overrideStyle is null)
@@ -48,7 +52,8 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
             overrideStyle.Foreground ?? Foreground,
             overrideStyle.Background ?? Background,
             Border,
-            Alignment);
+            Alignment,
+            VerticalAlignment);
     }
 
     internal CellStyleDefinition WithBackground(string background) => new(
@@ -58,9 +63,10 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
         Foreground,
         background,
         Border,
-        Alignment);
+        Alignment,
+        VerticalAlignment);
 
-    internal CellStyleDefinition WithAlignment(ExcelHorizontalAlignment? alignment) => alignment is null
+    internal CellStyleDefinition WithAlignment(ExcelHorizontalAlignment? alignment, ExcelVerticalAlignment? verticalAlignment) => alignment is null && verticalAlignment is null
         ? this
         : new CellStyleDefinition(
             FontName,
@@ -69,7 +75,8 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
             Foreground,
             Background,
             Border,
-            alignment.Value);
+            alignment ?? Alignment,
+            verticalAlignment ?? VerticalAlignment);
 
     public bool Equals(CellStyleDefinition? other)
     {
@@ -80,7 +87,8 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
             && Foreground == other.Foreground
             && Background == other.Background
             && Border == other.Border
-            && Alignment == other.Alignment;
+            && Alignment == other.Alignment
+            && VerticalAlignment == other.VerticalAlignment;
     }
 
     public override bool Equals(object? obj) => Equals(obj as CellStyleDefinition);
@@ -97,6 +105,7 @@ internal sealed class CellStyleDefinition : IEquatable<CellStyleDefinition>
             hash = (hash * 31) + Background.GetHashCode();
             hash = (hash * 31) + Border.GetHashCode();
             hash = (hash * 31) + Alignment.GetHashCode();
+            hash = (hash * 31) + VerticalAlignment.GetHashCode();
             return hash;
         }
     }

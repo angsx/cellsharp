@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1-prerelease
+
+- Added per-column vertical alignment and configurable header horizontal and vertical alignment. Headers inherit their column alignment unless explicitly overridden.
+
 ## 0.6.0-prerelease
 
 - Prepared the public prerelease with strongly typed read/write APIs, schemas, validation, formulas, templates, tables, images, report components, and multi-sheet workbooks.

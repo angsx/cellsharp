@@ -44,7 +44,7 @@ Excel.CreateTemplate(
 
 The generated worksheet uses the schema's declared order and headers. `Optional()` columns are included: optional means an imported workbook may omit that header, not that the recommended blank template should omit it. `Ignore()` columns are excluded.
 
-`Format(...)`, `Width(...)`, and `Align(...)` are carried into the template. CellSharp stores a default XLSX style on each column rather than adding empty placeholder rows. This keeps the workbook empty while letting cells entered manually inherit column format and alignment in spreadsheet applications. `DateTime` columns receive CellSharp's usual date display format and `decimal` columns receive `0.00` when no explicit format is configured. Format codes use invariant XLSX syntax, so `0.00` displays as `1,00` for a value of `1` in Italian Excel.
+`Format(...)`, `Width(...)`, `Align(...)`, and `VerticalAlign(...)` are carried into the template. `Align(...)` and `VerticalAlign(...)` also determine the matching header alignment unless `HeaderAlign(...)` or `HeaderVerticalAlign(...)` overrides it. CellSharp stores a default XLSX style on each column rather than adding empty placeholder rows. This keeps the workbook empty while letting cells entered manually inherit column format and alignment in spreadsheet applications. `DateTime` columns receive CellSharp's usual date display format and `decimal` columns receive `0.00` when no explicit format is configured. Format codes use invariant XLSX syntax, so `0.00` displays as `1,00` for a value of `1` in Italian Excel.
 
 ## Write options on empty workbooks
 
