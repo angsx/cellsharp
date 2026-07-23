@@ -23,6 +23,8 @@ var orderSchema = Excel.Schema<OrderLine>()
     .Build();
 ```
 
+The `#,##0.00` code is written in invariant XLSX syntax. Excel applies the locale when displaying it, so it renders `1` as `1,00` in Italian.
+
 ## Write / Read
 
 ```csharp

@@ -52,6 +52,8 @@ margin.Value.Formula("SUM(Profit) / SUM(Revenue)")
 
 Component defaults are intentionally neutral and never change row height or column width. Apply `Style(...)`, `Row(...).Height(...)`, or `Column(...).Width(...)` when the report needs a stronger visual treatment or explicit sizing. User-applied range and cell styles compose with the defaults using the normal precedence rules.
 
+`NumberFormat(...)` uses invariant XLSX format codes. Use `.` for decimal placeholders; Excel applies the user's locale when it displays values, so `0.00%` renders with a comma decimal separator in Italian Excel.
+
 ## Full report
 
 ```csharp

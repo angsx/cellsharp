@@ -7,6 +7,7 @@ namespace CellSharp.Internal;
 internal sealed class WorkbookStyleCatalog
 {
     private const string DefaultDateFormat = "yyyy-mm-dd hh:mm:ss";
+    private const string DefaultDecimalFormat = "0.00";
     private readonly Fonts _fonts = new(new Font()) { Count = 1U };
     private readonly Fills _fills = new(
         new Fill(new PatternFill { PatternType = PatternValues.None }),
@@ -54,16 +55,16 @@ internal sealed class WorkbookStyleCatalog
 
     internal uint DataStyleIndex(ExportProperty property, object? value, int dataRowIndex, ExcelWriteOptions options)
     {
-        return DataStyleIndex(property, value is DateTime, dataRowIndex, options);
+        return DataStyleIndex(property, value is DateTime, value is decimal, dataRowIndex, options);
     }
 
     internal uint TemplateDataStyleIndex(ExportProperty property, ExcelWriteOptions options)
     {
         var propertyType = Nullable.GetUnderlyingType(property.CellType) ?? property.CellType;
-        return DataStyleIndex(property, propertyType == typeof(DateTime), 0, options);
+        return DataStyleIndex(property, propertyType == typeof(DateTime), propertyType == typeof(decimal), 0, options);
     }
 
-    private uint DataStyleIndex(ExportProperty property, bool isDate, int dataRowIndex, ExcelWriteOptions options)
+    private uint DataStyleIndex(ExportProperty property, bool isDate, bool isDecimal, int dataRowIndex, ExcelWriteOptions options)
     {
         var template = options.Template ?? WorkbookTheme.For(options.Theme);
         var dataStyle = new CellStyleDefinition(
@@ -81,7 +82,7 @@ internal sealed class WorkbookStyleCatalog
             ? dataStyle.WithBackground(alternateBackground)
             : dataStyle;
         style = style.WithAlignment(property.Alignment);
-        var numberFormat = property.Format ?? (isDate ? DefaultDateFormat : null);
+        var numberFormat = property.Format ?? (isDate ? DefaultDateFormat : isDecimal ? DefaultDecimalFormat : null);
         return Register(style, numberFormat);
     }
 

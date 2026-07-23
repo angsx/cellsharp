@@ -17,6 +17,8 @@ var schema = Excel.Schema<Invoice>()
     .Build();
 ```
 
+Numeric format codes are locale-invariant. For example, `#,##0.00` displays `1` as `1,00` in Excel with an Italian locale; use `.` for the decimal placeholder.
+
 The callback also exposes the one-based output `Column` and `SheetName`. Formula text may include one leading `=` or omit it; CellSharp writes the normalized XLSX expression without that prefix. Empty formulas and a double `==` prefix fail during export.
 
 `Formula(...)` is an explicit executable-content boundary. Do not concatenate user-controlled values, imported workbook text, or other untrusted data into the returned expression: spreadsheet applications may evaluate network-capable or otherwise dangerous functions. Write untrusted data through a normal column and reference that cell from a constant, application-authored formula instead.

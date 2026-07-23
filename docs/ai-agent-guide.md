@@ -71,6 +71,8 @@ var schema = Excel.Schema<Order>()
 Excel.CreateTemplate("orders-template.xlsx", schema);
 ```
 
+`#,##0.00` is an invariant XLSX format code: Excel with an Italian locale displays `1` as `1,00` (and `1234.5` as `1.234,50`). Use `.` for the decimal placeholder, not `,`.
+
 `context.Row` is the physical, one-based Excel row. Do not pass a formula-looking string to `Value(...)` and expect a formula.
 
 ### Multiple worksheets and layout
