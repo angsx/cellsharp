@@ -81,7 +81,7 @@ var schema = Excel.Schema<Order>()
     .Build();
 ```
 
-`Format` is an Excel format-code string. CellSharp stores it in the XLSX style table and deliberately does not parse it or use it for input conversion. Equivalent format codes are reused in the style catalog. `Width` must be greater than zero and no greater than 255. `Align` supports the small `General`, `Left`, `Center`, and `Right` enum.
+`Format` is an Excel format-code string. CellSharp stores it in the XLSX style table and deliberately does not parse it or use it for input conversion. Decimal properties default to `0.00`, which Excel displays as `1,00` when the workbook is opened with an Italian locale. Use `.` in format codes even for localized output: Excel applies the user's decimal separator when it renders the value. Equivalent format codes are reused in the style catalog. `Width` must be greater than zero and no greater than 255. `Align` supports the small `General`, `Left`, `Center`, and `Right` enum.
 
 ## Widths and frozen headers
 

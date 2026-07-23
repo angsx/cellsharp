@@ -70,6 +70,38 @@ public sealed class ExcelWriteTests
     }
 
     [Fact]
+    public void WriteUsesTwoDecimalPlacesForDecimalValuesByDefault()
+    {
+        var path = TemporaryPath();
+
+        try
+        {
+            Excel.Write(path, [new DecimalValue(1M)]);
+
+            using var document = SpreadsheetDocument.Open(path, false);
+            var cell = document.WorkbookPart!.WorksheetParts.Single().Worksheet!
+                .GetFirstChild<SheetData>()!
+                .Elements<Row>()
+                .Skip(1)
+                .Single()
+                .Elements<Cell>()
+                .Single();
+            var format = document.WorkbookPart.WorkbookStylesPart!.Stylesheet!.CellFormats!
+                .Elements<CellFormat>()
+                .ElementAt((int)cell.StyleIndex!.Value);
+            var numberFormat = document.WorkbookPart.WorkbookStylesPart.Stylesheet.NumberingFormats!
+                .Elements<NumberingFormat>()
+                .Single(candidate => candidate.NumberFormatId!.Value == format.NumberFormatId!.Value);
+
+            Assert.Equal("0.00", numberFormat.FormatCode!.Value);
+        }
+        finally
+        {
+            Delete(path);
+        }
+    }
+
+    [Fact]
     public void WriteKeepsFormulaLikeTextAsText()
     {
         var path = TemporaryPath();
@@ -156,6 +188,8 @@ public sealed class ExcelWriteTests
     }
 
     private sealed record Customer(int Id, string Name, bool IsActive, DateTime CreatedAt, Guid ExternalId, decimal? Balance);
+
+    private sealed record DecimalValue(decimal Value);
 
     private sealed record FormulaCandidate(string Value);
 

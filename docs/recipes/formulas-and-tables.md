@@ -16,6 +16,8 @@ var schema = Excel.Schema<Order>()
 Excel.Write("orders.xlsx", orders, schema);
 ```
 
+The `#,##0.00` format is invariant XLSX syntax and displays two decimal places using Excel's local separators, such as `1,00` in Italian Excel.
+
 The first data row is Excel row 2. CellSharp requests recalculation only when it has actually written formula cells. It also stores the property's converted value as the formula's initial cache, allowing immediate import; Excel, LibreOffice, or another calculation-capable consumer replaces that cache on recalculation.
 
 For an executable calculated-column example, see [Formulas and calculated columns](../use-cases/formulas-and-calculated-columns.md).

@@ -17,6 +17,8 @@ var schema = Excel.Schema<Order>()
 Excel.Write("orders.xlsx", orders, schema);
 ```
 
+`#,##0.00` uses the invariant XLSX decimal placeholder. Excel renders it with the local separator, so an Italian installation shows `1,00` for a value of `1`.
+
 ## Names and styles
 
 `AsTable()` generates a deterministic name from the worksheet name, such as `OrdersTable`. `AsTable("OrdersTable")` preserves an explicit name. Names are validated as Excel identifiers and are unique case-insensitively across a multi-sheet workbook; an explicit duplicate fails the write.
