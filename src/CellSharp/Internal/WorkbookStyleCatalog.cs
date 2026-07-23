@@ -39,7 +39,7 @@ internal sealed class WorkbookStyleCatalog
             _differentialFormats);
     }
 
-    internal uint HeaderStyleIndex(ExcelWriteOptions options)
+    internal uint HeaderStyleIndex(ExportProperty property, ExcelWriteOptions options)
     {
         var template = options.Template ?? WorkbookTheme.For(options.Theme);
         var header = new CellStyleDefinition(
@@ -49,7 +49,8 @@ internal sealed class WorkbookStyleCatalog
             HexColor.Normalize(template.HeaderTextColor, nameof(template.HeaderTextColor)),
             HexColor.Normalize(template.HeaderBackgroundColor, nameof(template.HeaderBackgroundColor)),
             HexColor.Normalize(template.BorderColor, nameof(template.BorderColor)),
-            ExcelHorizontalAlignment.Center);
+            property.HeaderAlignment ?? property.Alignment ?? ExcelHorizontalAlignment.Center,
+            property.HeaderVerticalAlignment ?? property.VerticalAlignment ?? ExcelVerticalAlignment.Center);
         return Register(header.With(options.HeaderStyle));
     }
 
@@ -74,14 +75,15 @@ internal sealed class WorkbookStyleCatalog
             HexColor.Normalize(template.DataTextColor, nameof(template.DataTextColor)),
             HexColor.Normalize(template.DataBackgroundColor, nameof(template.DataBackgroundColor)),
             HexColor.Normalize(template.BorderColor, nameof(template.BorderColor)),
-            ExcelHorizontalAlignment.Left);
+            ExcelHorizontalAlignment.Left,
+            ExcelVerticalAlignment.Center);
         var alternateBackground = HexColor.Normalize(
             template.AlternateRowBackgroundColor ?? template.DataBackgroundColor,
             nameof(template.AlternateRowBackgroundColor));
         var style = options.AlternatingRows && dataRowIndex % 2 == 1
             ? dataStyle.WithBackground(alternateBackground)
             : dataStyle;
-        style = style.WithAlignment(property.Alignment);
+        style = style.WithAlignment(property.Alignment, property.VerticalAlignment);
         var numberFormat = property.Format ?? (isDate ? DefaultDateFormat : isDecimal ? DefaultDecimalFormat : null);
         return Register(style, numberFormat);
     }
@@ -216,7 +218,7 @@ internal sealed class WorkbookStyleCatalog
             Bold: style.Bold, Italic: false, Underline: ExcelUnderline.None, Strikethrough: false,
             FontSize: style.FontSize, FontName: style.FontName, FontColor: style.Foreground, FillColor: style.Background,
             Horizontal: style.Alignment switch { ExcelHorizontalAlignment.General => ExcelCellHorizontalAlignment.General, ExcelHorizontalAlignment.Left => ExcelCellHorizontalAlignment.Left, ExcelHorizontalAlignment.Center => ExcelCellHorizontalAlignment.Center, ExcelHorizontalAlignment.Right => ExcelCellHorizontalAlignment.Right, _ => throw new ArgumentOutOfRangeException(nameof(style)) },
-            Vertical: ExcelVerticalAlignment.Center, Rotation: null, VerticalText: false, Wrap: false, Shrink: false,
+            Vertical: style.VerticalAlignment, Rotation: null, VerticalText: false, Wrap: false, Shrink: false,
             NumberFormat: numberFormat,
             Border: new BorderDefinition(new BorderSideDefinition(ExcelBorderStyle.Thin, borderColor), new BorderSideDefinition(ExcelBorderStyle.Thin, borderColor), new BorderSideDefinition(ExcelBorderStyle.Thin, borderColor), new BorderSideDefinition(ExcelBorderStyle.Thin, borderColor)));
         var index = ComposeStyleIndex(null, resolved);

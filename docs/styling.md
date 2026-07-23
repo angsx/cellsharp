@@ -60,7 +60,7 @@ Excel.Write("customers.xlsx", customers, options => options
 Colors use `#RRGGBB` and are validated before the workbook is created. The precedence is:
 
 ```text
-Column format/alignment > explicit HeaderStyle values > custom template or built-in theme > library defaults
+Explicit header alignment > column alignment > explicit HeaderStyle values > custom template or built-in theme > library defaults
 ```
 
 ## Column formatting
@@ -76,12 +76,14 @@ var schema = Excel.Schema<Order>()
     .Column(x => x.Total, column => column
         .Header("Total")
         .Format("#,##0.00")
-        .Align(ExcelHorizontalAlignment.Right))
+        .Align(ExcelHorizontalAlignment.Right)
+        .VerticalAlign(ExcelVerticalAlignment.Center)
+        .HeaderAlign(ExcelHorizontalAlignment.Center))
     .Column(x => x.Discount, column => column.Format("0.00%"))
     .Build();
 ```
 
-`Format` is an Excel format-code string. CellSharp stores it in the XLSX style table and deliberately does not parse it or use it for input conversion. Decimal properties default to `0.00`, which Excel displays as `1,00` when the workbook is opened with an Italian locale. Use `.` in format codes even for localized output: Excel applies the user's decimal separator when it renders the value. Equivalent format codes are reused in the style catalog. `Width` must be greater than zero and no greater than 255. `Align` supports the small `General`, `Left`, `Center`, and `Right` enum.
+`Format` is an Excel format-code string. CellSharp stores it in the XLSX style table and deliberately does not parse it or use it for input conversion. Decimal properties default to `0.00`, which Excel displays as `1,00` when the workbook is opened with an Italian locale. Use `.` in format codes even for localized output: Excel applies the user's decimal separator when it renders the value. Equivalent format codes are reused in the style catalog. `Width` must be greater than zero and no greater than 255. `Align` and `VerticalAlign` apply to data cells and, by default, their matching header cells. Use `HeaderAlign` and `HeaderVerticalAlign` to override just the header. Without either configuration, headers remain centered horizontally and vertically.
 
 ## Widths and frozen headers
 

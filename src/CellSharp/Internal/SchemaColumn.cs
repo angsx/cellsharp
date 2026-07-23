@@ -16,6 +16,9 @@ internal sealed class SchemaColumn
         string? format,
         double? width,
         ExcelHorizontalAlignment? alignment,
+        ExcelVerticalAlignment? verticalAlignment,
+        ExcelHorizontalAlignment? headerAlignment,
+        ExcelVerticalAlignment? headerVerticalAlignment,
         int? sourceColumnNumber,
         string? sourceHeader,
         Func<ExcelFormulaContext, string>? formula)
@@ -30,6 +33,9 @@ internal sealed class SchemaColumn
         Format = format;
         Width = width;
         Alignment = alignment;
+        VerticalAlignment = verticalAlignment;
+        HeaderAlignment = headerAlignment;
+        HeaderVerticalAlignment = headerVerticalAlignment;
         SourceColumnNumber = sourceColumnNumber;
         SourceHeader = sourceHeader;
         Formula = formula;
@@ -54,6 +60,12 @@ internal sealed class SchemaColumn
     internal double? Width { get; }
 
     internal ExcelHorizontalAlignment? Alignment { get; }
+
+    internal ExcelVerticalAlignment? VerticalAlignment { get; }
+
+    internal ExcelHorizontalAlignment? HeaderAlignment { get; }
+
+    internal ExcelVerticalAlignment? HeaderVerticalAlignment { get; }
 
     internal int? SourceColumnNumber { get; }
 
