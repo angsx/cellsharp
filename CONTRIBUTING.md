@@ -43,6 +43,10 @@ Keep pull requests focused and avoid unrelated refactoring. A pull request shoul
 
 The maintainer may request changes before merging. Review timing is best effort; no review-time commitment is implied.
 
+## Dependency updates
+
+Dependabot remains enabled for NuGet packages and GitHub Actions. Its pull requests are review signals: inspect the proposed update, then reproduce the approved change in a maintainer-authored branch and pull request. Do not merge Dependabot pull requests directly.
+
 ## Development setup
 
 CellSharp targets `netstandard2.0` and `net8.0`; the tests and samples target `net8.0`. From the repository root:
