@@ -58,7 +58,7 @@ var schema = Excel.Schema<Customer>()
 var result = Excel.Read<Customer>("customers.xlsx", schema);
 ```
 
-See [Getting started](https://github.com/angsx/cellsharp/blob/main/docs/getting-started.md) for the complete write, read, and schema workflow.
+See [Getting started](https://github.com/angsx/cellsharp/blob/master/docs/getting-started.md) for the complete write, read, and schema workflow.
 
 ## What it does
 
@@ -79,7 +79,7 @@ Normal strings are always exported as text, even when they begin with `=`. Formu
 - Create multi-sheet workbooks, formulas, and native Excel Tables
 - Stream XLSX files directly from a web application
 
-See the task-oriented [use cases](https://github.com/angsx/cellsharp/blob/main/docs/use-cases/README.md), or clone the repository and run the [CellSharp Samples](https://github.com/angsx/cellsharp/blob/main/samples/CellSharp.Samples/README.md).
+See the task-oriented [use cases](https://github.com/angsx/cellsharp/blob/master/docs/use-cases/README.md), or clone the repository and run the [CellSharp Samples](https://github.com/angsx/cellsharp/blob/master/samples/CellSharp.Samples/README.md).
 
 ## Simple when you need it
 
@@ -111,25 +111,25 @@ foreach (var error in result.Errors)
 
 `Rows` contains valid rows by default. Pass `new ExcelReadOptions(ExcelInvalidRowPolicy.Include)` to retain partial invalid rows for remediation.
 
-Imports use invariant XLSX conventions by default. For third-party files that store localized numbers or dates as text, pass a fallback `CultureInfo`; `EmptyStringAsNull` can also map explicit empty text cells to `null` for strings and nullable value types. See [reading XLSX files](https://github.com/angsx/cellsharp/blob/main/docs/reading.md#localized-text-values) for the exact precedence and nullability rules.
+Imports use invariant XLSX conventions by default. For third-party files that store localized numbers or dates as text, pass a fallback `CultureInfo`; `EmptyStringAsNull` can also map explicit empty text cells to `null` for strings and nullable value types. See [reading XLSX files](https://github.com/angsx/cellsharp/blob/master/docs/reading.md#localized-text-values) for the exact precedence and nullability rules.
 
 ## Documentation
 
-- [Getting started](https://github.com/angsx/cellsharp/blob/main/docs/getting-started.md)
-- [Use cases](https://github.com/angsx/cellsharp/blob/main/docs/use-cases/README.md): complete tasks from export to web streams
-- [Writing XLSX files](https://github.com/angsx/cellsharp/blob/main/docs/writing.md) and [reading XLSX files](https://github.com/angsx/cellsharp/blob/main/docs/reading.md)
-- [Schemas and overlays](https://github.com/angsx/cellsharp/blob/main/docs/schemas.md), [validation](https://github.com/angsx/cellsharp/blob/main/docs/validation.md), [diagnostics](https://github.com/angsx/cellsharp/blob/main/docs/diagnostics.md), and [custom converters](https://github.com/angsx/cellsharp/blob/main/docs/converters.md)
-- [Templates](https://github.com/angsx/cellsharp/blob/main/docs/templates.md), [formulas](https://github.com/angsx/cellsharp/blob/main/docs/formulas.md), [Excel Tables](https://github.com/angsx/cellsharp/blob/main/docs/tables.md), and [worksheet settings](https://github.com/angsx/cellsharp/blob/main/docs/worksheet-settings.md)
-- [Conditional formatting](https://github.com/angsx/cellsharp/blob/main/docs/conditional-formatting.md)
-- [Named ranges](https://github.com/angsx/cellsharp/blob/main/docs/named-ranges.md) and [worksheet utilities](https://github.com/angsx/cellsharp/blob/main/docs/worksheet-settings.md)
-- [Images](https://github.com/angsx/cellsharp/blob/main/docs/images.md)
-- [Report layouts](https://github.com/angsx/cellsharp/blob/main/docs/report-layouts.md)
-- [AI agent guide](https://github.com/angsx/cellsharp/blob/main/docs/ai-agent-guide.md): concise contracts and canonical workflows for coding agents and contributors
-- [Streams and cancellation](https://github.com/angsx/cellsharp/blob/main/docs/streams.md) and [multi-sheet workbooks](https://github.com/angsx/cellsharp/blob/main/docs/multi-sheet.md)
-- [Security model and untrusted XLSX input](https://github.com/angsx/cellsharp/blob/main/docs/security.md)
-- [Release checklist](https://github.com/angsx/cellsharp/blob/main/docs/release-security.md)
-- [Roadmap](https://github.com/angsx/cellsharp/blob/main/ROADMAP.md)
-- Recipes: [validated import](https://github.com/angsx/cellsharp/blob/main/docs/recipes/import-with-validation.md), [order template](https://github.com/angsx/cellsharp/blob/main/docs/recipes/create-an-order-template.md), [multi-sheet workbook](https://github.com/angsx/cellsharp/blob/main/docs/recipes/multi-sheet-workbook.md), [formulas and Tables](https://github.com/angsx/cellsharp/blob/main/docs/recipes/formulas-and-tables.md)
+- [Getting started](https://github.com/angsx/cellsharp/blob/master/docs/getting-started.md)
+- [Use cases](https://github.com/angsx/cellsharp/blob/master/docs/use-cases/README.md): complete tasks from export to web streams
+- [Writing XLSX files](https://github.com/angsx/cellsharp/blob/master/docs/writing.md) and [reading XLSX files](https://github.com/angsx/cellsharp/blob/master/docs/reading.md)
+- [Schemas and overlays](https://github.com/angsx/cellsharp/blob/master/docs/schemas.md), [validation](https://github.com/angsx/cellsharp/blob/master/docs/validation.md), [diagnostics](https://github.com/angsx/cellsharp/blob/master/docs/diagnostics.md), and [custom converters](https://github.com/angsx/cellsharp/blob/master/docs/converters.md)
+- [Templates](https://github.com/angsx/cellsharp/blob/master/docs/templates.md), [formulas](https://github.com/angsx/cellsharp/blob/master/docs/formulas.md), [Excel Tables](https://github.com/angsx/cellsharp/blob/master/docs/tables.md), and [worksheet settings](https://github.com/angsx/cellsharp/blob/master/docs/worksheet-settings.md)
+- [Conditional formatting](https://github.com/angsx/cellsharp/blob/master/docs/conditional-formatting.md)
+- [Named ranges](https://github.com/angsx/cellsharp/blob/master/docs/named-ranges.md) and [worksheet utilities](https://github.com/angsx/cellsharp/blob/master/docs/worksheet-settings.md)
+- [Images](https://github.com/angsx/cellsharp/blob/master/docs/images.md)
+- [Report layouts](https://github.com/angsx/cellsharp/blob/master/docs/report-layouts.md)
+- [AI agent guide](https://github.com/angsx/cellsharp/blob/master/docs/ai-agent-guide.md): concise contracts and canonical workflows for coding agents and contributors
+- [Streams and cancellation](https://github.com/angsx/cellsharp/blob/master/docs/streams.md) and [multi-sheet workbooks](https://github.com/angsx/cellsharp/blob/master/docs/multi-sheet.md)
+- [Security model and untrusted XLSX input](https://github.com/angsx/cellsharp/blob/master/docs/security.md)
+- [Release checklist](https://github.com/angsx/cellsharp/blob/master/docs/release-security.md)
+- [Roadmap](https://github.com/angsx/cellsharp/blob/master/ROADMAP.md)
+- Recipes: [validated import](https://github.com/angsx/cellsharp/blob/master/docs/recipes/import-with-validation.md), [order template](https://github.com/angsx/cellsharp/blob/master/docs/recipes/create-an-order-template.md), [multi-sheet workbook](https://github.com/angsx/cellsharp/blob/master/docs/recipes/multi-sheet-workbook.md), [formulas and Tables](https://github.com/angsx/cellsharp/blob/master/docs/recipes/formulas-and-tables.md)
 
 ## Compatibility and scope
 
@@ -137,9 +137,9 @@ CellSharp targets `netstandard2.0` and `net8.0`. It intentionally does not provi
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](https://github.com/angsx/cellsharp/blob/main/CONTRIBUTING.md) for development, testing, and pull request guidance.
+Contributions are welcome. See [CONTRIBUTING.md](https://github.com/angsx/cellsharp/blob/master/CONTRIBUTING.md) for development, testing, and pull request guidance.
 
-Please report security issues according to [SECURITY.md](https://github.com/angsx/cellsharp/blob/main/SECURITY.md).
+Please report security issues according to [SECURITY.md](https://github.com/angsx/cellsharp/blob/master/SECURITY.md).
 
 ## Support CellSharp
 
@@ -151,4 +151,4 @@ Support is entirely optional and does not affect access to the project, its feat
 
 ## License
 
-CellSharp is licensed under the MIT License. See [LICENSE](https://github.com/angsx/cellsharp/blob/main/LICENSE) for details.
+CellSharp is licensed under the MIT License. See [LICENSE](https://github.com/angsx/cellsharp/blob/master/LICENSE) for details.
