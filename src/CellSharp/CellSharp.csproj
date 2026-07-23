@@ -9,7 +9,7 @@
     <PackageId>CellSharp</PackageId>
     <Title>CellSharp</Title>
     <Product>CellSharp</Product>
-    <Version>0.6.0-prerelease</Version>
+    <Version>0.6.1-prerelease</Version>
     <Authors>Angelo Collura</Authors>
     <Copyright>Copyright © 2026 Angelo Collura</Copyright>
     <Description>A lightweight, strongly typed .NET library for reading and writing Excel XLSX files with schemas, validation, formulas, templates, and multi-sheet workbooks.</Description>

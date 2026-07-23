@@ -10,6 +10,9 @@ internal sealed class ExportProperty
         string? format = null,
         double? width = null,
         ExcelHorizontalAlignment? alignment = null,
+        ExcelVerticalAlignment? verticalAlignment = null,
+        ExcelHorizontalAlignment? headerAlignment = null,
+        ExcelVerticalAlignment? headerVerticalAlignment = null,
         DeclarativeValidationRule? declarativeValidation = null,
         ValueConverterDefinition? converter = null,
         Func<ExcelFormulaContext, string>? formula = null)
@@ -19,6 +22,9 @@ internal sealed class ExportProperty
         Format = format;
         Width = width;
         Alignment = alignment;
+        VerticalAlignment = verticalAlignment;
+        HeaderAlignment = headerAlignment;
+        HeaderVerticalAlignment = headerVerticalAlignment;
         DeclarativeValidation = declarativeValidation;
         Converter = converter;
         Formula = formula;
@@ -33,6 +39,12 @@ internal sealed class ExportProperty
     internal double? Width { get; }
 
     internal ExcelHorizontalAlignment? Alignment { get; }
+
+    internal ExcelVerticalAlignment? VerticalAlignment { get; }
+
+    internal ExcelHorizontalAlignment? HeaderAlignment { get; }
+
+    internal ExcelVerticalAlignment? HeaderVerticalAlignment { get; }
 
     internal DeclarativeValidationRule? DeclarativeValidation { get; }
 
@@ -61,6 +73,9 @@ internal sealed class ExportProperty
                     column.Column.Format,
                     column.Column.Width,
                     column.Column.Alignment,
+                    column.Column.VerticalAlignment,
+                    column.Column.HeaderAlignment,
+                    column.Column.HeaderVerticalAlignment,
                     column.Column.DeclarativeValidation,
                     column.Column.Converter,
                     column.Column.Formula))
