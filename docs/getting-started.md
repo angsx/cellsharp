@@ -6,7 +6,7 @@ Install the released package from a configured NuGet source:
 dotnet add package CellSharp
 ```
 
-For local package verification, pack CellSharp and add that folder as a NuGet source; consume `CellSharp` with `PackageReference`, not a project reference. The package remains pre-1.0 until a stable release is announced.
+For local package verification, pack CellSharp and add that folder as a NuGet source; consume `CellSharp` with `PackageReference`, not a project reference. CellSharp 1.x is the stable release line.
 
 ## First export
 

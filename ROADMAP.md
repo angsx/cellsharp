@@ -2,30 +2,23 @@
 
 CellSharp is maintained in the author's free time. The roadmap expresses general direction rather than deadlines or guaranteed features.
 
-## 0.6.x — Public prerelease
+## 1.x — Stable core
 
-The current phase focuses on publishing CellSharp on NuGet, using it in real projects, fixing bugs, improving documentation and IntelliSense when needed, and gathering feedback. New features are possible, but stability and real-world usage matter more.
+CellSharp 1.0 establishes the typed read, write, schema, validation, template, worksheet-layout, and multi-sheet APIs as the stable core. The 1.x line prioritizes compatibility, bug fixes, documentation, interoperability, and improvements justified by real-world usage.
 
-## 0.7.x — Developer experience
+Stable does not mean feature-complete for every Excel capability. New features may be added compatibly when their API and maintenance cost fit the library's focused scope.
 
-Possible areas include removing friction found through real usage, improving schemas and mapping where justified, improving diagnostics and examples, and adding small features with clear real-world value.
+## Near-term
 
-## 0.8.x — Robustness and interoperability
+- Remove friction found through real usage and improve diagnostics and examples.
+- Broaden Excel and LibreOffice interoperability when concrete compatibility issues emerge.
+- Improve realistic-workbook performance and resource usage where measurements justify it.
+- Add small, backwards-compatible features with clear practical value.
 
-Possible focus includes broader workbook compatibility, Excel and LibreOffice behavior, unusual or malformed files, realistic-workbook performance, and resource usage where actual problems emerge.
+## Major future milestone
 
-## 0.9.x — Stabilization
+- Charts.
 
-Focus increasingly on public API consistency, naming, behavior, compatibility, documentation, and the remaining breaking changes worth making before 1.0. The API should become increasingly stable during this phase.
+## Later
 
-## 1.0
-
-`1.0` does not require CellSharp to support every Excel feature. It will be released when the maintainer is comfortable saying:
-
-> The core CellSharp API is stable enough for applications to depend on without expecting avoidable breaking changes.
-
-The exact feature set may evolve with real-world usage.
-
-## Beyond 1.0
-
-Future development will be driven primarily by real-world usage, reported issues, useful contributions, and features that fit CellSharp's goal of remaining a focused, strongly typed .NET Excel library.
+- Shapes, sparklines, richer drawings, and pivot-oriented features.
