@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-CellSharp is pre-1.0. Security fixes are considered for the current maintained version only. There are no supported historical release lines at this time; this policy can be expanded when multiple release lines exist.
+CellSharp 1.x is the current stable release line. Security fixes are considered for the latest stable version only. There are no supported historical release lines at this time; this policy can be expanded when multiple release lines exist.
 
 ## Reporting a vulnerability
 

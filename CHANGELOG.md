@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+- Declared the core typed read, write, schema, validation, template, layout, and multi-sheet APIs stable after the public prerelease cycle.
+- Enabled NuGet package validation for the stable release line.
+- Updated installation, security, design, and roadmap documentation for the 1.x compatibility contract.
+
 ## 0.6.1-prerelease
 
 - Added per-column vertical alignment and configurable header horizontal and vertical alignment. Headers inherit their column alignment unless explicitly overridden.
@@ -8,8 +14,6 @@
 
 - Prepared the public prerelease with strongly typed read/write APIs, schemas, validation, formulas, templates, tables, images, report components, and multi-sheet workbooks.
 - Added resilience, security, diagnostics, styling, stream, and documentation improvements for real-world XLSX use.
-
-## Unreleased
 
 ### Added
 
@@ -28,7 +32,7 @@
 - Added declarative `AllowedValues`, `Range`, and `DateBetween` schema validation for import and native Excel Data Validation in writes and generated templates.
 - Added reusable bidirectional `IExcelValueConverter<TValue, TCellValue>` support for schema columns.
 - Added schema-level `SheetName(...)`, shared by `Write`, `Read`, and `CreateTemplate`, with explicit missing-sheet failures on read.
-- Stabilized `IExcelValueConverter<TValue, TCellValue>` and `ConvertWith<TCellValue>(...)` as the pre-1.0 converter API.
+- Stabilized `IExcelValueConverter<TValue, TCellValue>` and `ConvertWith<TCellValue>(...)` as the converter API planned for 1.0.
 - Added resilient import handling for styled-only rows, sparse cells, unreliable worksheet dimensions, Excel error cells, and formulas with or without cached values.
 - Added schema-column runtime import mapping through `MapFromColumn(...)` and `MapFromHeader(...)`.
 - Documented and regression-tested literal XLSX text handling for formula-looking strings.
