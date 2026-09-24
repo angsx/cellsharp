@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- Updated Microsoft.NET.Test.Sdk to 18.10.1 and xunit.runner.visualstudio to 4.0.0.
+- No changes to the public API or library runtime behavior.
+
 ## 1.0.0
 
 - Declared the core typed read, write, schema, validation, template, layout, and multi-sheet APIs stable after the public prerelease cycle.

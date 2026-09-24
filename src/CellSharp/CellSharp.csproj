@@ -9,7 +9,7 @@
     <PackageId>CellSharp</PackageId>
     <Title>CellSharp</Title>
     <Product>CellSharp</Product>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Angelo Collura</Authors>
     <Copyright>Copyright © 2026 Angelo Collura</Copyright>
     <Description>A lightweight, strongly typed .NET library for reading and writing Excel XLSX files with schemas, validation, formulas, templates, and multi-sheet workbooks.</Description>
@@ -20,7 +20,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>CellSharp 1.0 is the first stable release. The core typed read, write, schema, validation, template, layout, and multi-sheet APIs are now considered stable.</PackageReleaseNotes>
+    <PackageReleaseNotes>Maintenance release updating Microsoft.NET.Test.Sdk to 18.10.1 and xunit.runner.visualstudio to 4.0.0. No changes to the public API or library runtime behavior.</PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>

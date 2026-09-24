@@ -32,14 +32,14 @@ Start with conventions, then introduce a schema when the workbook becomes a cont
 CellSharp `1.0.0` is the first stable release. Its core typed read, write, schema, validation, template, layout, and multi-sheet APIs are considered stable:
 
 ```bash
-dotnet add package CellSharp --version 1.0.0
+dotnet add package CellSharp --version 1.0.1
 ```
 
 NuGet.org is the public package source. The same package is also mirrored to GitHub Packages for GitHub-based CI or private-source configurations. Configure that source with a GitHub classic personal access token that has `read:packages`:
 
 ```bash
 dotnet nuget add source --username YOUR_GITHUB_USERNAME --password YOUR_GITHUB_PAT --store-password-in-clear-text --name github "https://nuget.pkg.github.com/angsx/index.json"
-dotnet add package CellSharp --version 1.0.0 --source github
+dotnet add package CellSharp --version 1.0.1 --source github
 ```
 
 The package ID is `CellSharp`.
